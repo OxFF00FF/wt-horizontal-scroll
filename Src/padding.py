@@ -25,14 +25,14 @@ def update_padding(direction=None, reset=False):
             elif direction == 'left':
                 # Защита от лишнего шага влево (выход за дефолт)
                 if padding[0] >= app_config.DEFAULT_PADDING[0] and padding[2] <= app_config.DEFAULT_PADDING[2]:
-                    logger.debug(f"{LIGHT_BLUE}[🔒 ]{WHITE}  Уже в начальном положении: {format_padding(padding)}")
+                    logger.debug(f"{LIGHT_BLUE}[🔒 ]{WHITE}  Already in default position: {format_padding(padding)}")
                     return
 
                 padding[0] += 50
                 padding[2] -= 50
                 direction_symbol = "←"
             else:
-                logger.error(f"{RED}[! ]{WHITE}  Неизвестное направление")
+                logger.error(f"{RED}[! ]{WHITE}  Unknown diretion")
                 return
 
         formatted = format_padding(padding)
@@ -41,7 +41,7 @@ def update_padding(direction=None, reset=False):
         with open(app_config.SETTINGS_JSON_PATH, "w", encoding='utf-8') as f:
             json.dump(data, f, indent=4)
 
-        logger.debug(f"{LIGHT_GREEN}[✔ ]{WHITE}  {direction_symbol} {formatted}")
+        logger.debug(f"{LIGHT_GREEN}[✔ ]{WHITE}  {direction_symbol}   [{formatted}]")
 
     except Exception as e:
-        logger.error(f"{LIGHT_RED}[✘ ]{WHITE}  Ошибка обновления padding: {e}")
+        logger.error(f"{LIGHT_RED}[✘ ]{WHITE}  Failed to opdate padding: {e}")
