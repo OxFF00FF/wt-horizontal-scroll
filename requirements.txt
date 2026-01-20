@@ -1,0 +1,14 @@
+annotated-types==0.7.0
+keyboard==0.13.5
+pillow==11.3.0
+psutil==7.0.0
+pydantic==2.11.7
+pydantic-settings==2.10.1
+pydantic_core==2.33.2
+pyfiglet==1.0.4
+pynput==1.8.1
+pystray==0.19.5
+python-dotenv==1.1.1
+six==1.17.0
+typing-inspection==0.4.1
+typing_extensions==4.14.1
