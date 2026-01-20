@@ -36,3 +36,4 @@ By default, scrolling is enabled at startup and disabled when exiting via the tr
 
 
 ![img.png](images/1.png)
+![img.png](images/2.gif)
