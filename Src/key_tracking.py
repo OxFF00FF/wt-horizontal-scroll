@@ -21,7 +21,7 @@ def on_key_release(key, _):
 
     if key == Key.alt_l or key == Key.alt_r:
         alt_pressed = False
-        logger.debug(f"[🔒 ]  {key} {LIGHT_YELLOW}Ignored{WHITE}")
+        logger.debug(f"[🔒]  {key} {LIGHT_YELLOW}Ignored{WHITE}")
         return
 
     try:

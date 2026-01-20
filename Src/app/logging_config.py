@@ -6,7 +6,7 @@ from Src.app.colors import *
 from Src.app.config import app_config
 
 
-def set_logger(log_name: str = 'app', console_level=logging.INFO):
+def set_logger(log_name: str = 'app', console_level=logging.INFO, simple=False):
     class ColorFormatter(logging.Formatter):
         LEVEL_COLORS = {
             logging.DEBUG: LIGHT_BLUE,
@@ -28,7 +28,10 @@ def set_logger(log_name: str = 'app', console_level=logging.INFO):
             lineno = f"{DARK_GRAY}{record.lineno} line{RESET}"
 
             # format log message
-            log_message = f"{level} |  {MESSAGE}  | {filename} · {funcname} · {lineno}"
+            if simple:
+                log_message = f"{time} - {level} |  {MESSAGE}"
+            else:
+                log_message = f"{time} - {level} |  {MESSAGE}  | {filename} · {funcname} · {lineno}"
             return log_message
 
         def formatTime(self, record, datefmt=None):
@@ -52,4 +55,4 @@ def set_logger(log_name: str = 'app', console_level=logging.INFO):
 if app_config.DEBUG:
     logger = set_logger(console_level=logging.DEBUG)
 else:
-    logger = set_logger()
+    logger = set_logger(simple=True)
