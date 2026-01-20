@@ -42,7 +42,8 @@ def update_padding(direction=None, reset=False):
             json.dump(data, f, indent=4)
 
         if app_config.LINE_WRAP:
-            logger.info(f"[✔ ]  {direction_symbol}   [{formatted}]")
+            if app_config.DEBUG:
+                logger.info(f"[✔ ]  {direction_symbol}   [{formatted}]")
 
     except Exception as e:
         logger.error(f"[✘ ]  Failed to opdate padding: {e}")

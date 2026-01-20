@@ -33,3 +33,6 @@ By default, scrolling is enabled at startup and disabled when exiting via the tr
  - `ALT + Left arrow` or `Mouse Scroll Up` shift the content from left to right
  - `ALT + Down arrow` reset position to default
  - `ALT + Up arrow` toggle scrolling and line wrap
+
+
+![img.png](images/1.png)
