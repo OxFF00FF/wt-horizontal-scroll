@@ -50,7 +50,7 @@ def check_settings():
         data = json.load(f)
 
     app_config.LINE_WRAP = not app_config.LINE_WRAP
-    logger.debug(f"Горизонтальная прокрутка работает" if app_config.LINE_WRAP else f"Горизонтальная прокрутка отключена")
+    logger.debug(f"Horizontal scrolling is {LIGHT_GREEN}Working{WHITE}" if app_config.LINE_WRAP else f"Horizontal scrolling is {LIGHT_RED}Stopped{WHITE}")
 
     if app_config.LINE_WRAP:
         for profile in data["profiles"]['list']:
