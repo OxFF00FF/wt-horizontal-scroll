@@ -9,6 +9,8 @@ from Src.app.logging_config import logger
 from Src.padding import update_padding
 from Src.utils import check_settings
 
+_icon_instance = None
+
 
 def increase_step(icon):
     app_config.STEP += 10
@@ -49,18 +51,27 @@ def create_menu():
         MenuItem('↩️  Сбросить (Alt + Down)', lambda icon, item: update_padding(reset=True)),
         MenuItem(f"{'❌  Отключить' if app_config.LINE_WRAP else '✅  Включить'} (Alt + Up)", toggle_line_wrap),
         MenuItem(
-            "ℹ️  Конфига WT",
+            "ℹ️  Путь до конфига WT",
             Menu(
                 MenuItem(f"Конфиг: {basename(settings_file)}", lambda icon, item: os.startfile(settings_file)),
                 MenuItem(f"Папка: {basename(settings_dir)}", lambda icon, item: os.startfile(settings_dir)),
             )
         ),
-        MenuItem('❌  Выход', lambda icon, item: icon.stop())
+        MenuItem('❌  Выход (Alt + Q)', lambda icon, item: icon.stop())
     )
 
 
 def create_icon():
-    image = Image.open(os.path.join(os.path.dirname(os.path.dirname(os.path.join(__file__))), 'icon', 'ICO.png'))
+    """Создаёт объект Icon и сохраняет его для дальнейшего доступа."""
+    global _icon_instance
+    if _icon_instance is None:
+        image = Image.open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'icon', 'ICO.png'))
+        _icon_instance = Icon("WT_horizontal_scroll", image, "WT Horizontal Scroll", create_menu())
+    return _icon_instance
 
-    icon = Icon("WT_horizontal_scroll", image, "WT Horizontal Scroll", create_menu())
-    return icon
+
+def get_icon():
+    """Возвращает уже созданный объект Icon, если он существует."""
+    if _icon_instance is None:
+        raise RuntimeError("Icon ещё не создан. Сначала вызовите create_icon().")
+    return _icon_instance
