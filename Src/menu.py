@@ -39,25 +39,25 @@ def create_menu():
 
     return Menu(
         MenuItem(
-            "⚙️ Изменить шаг смещения...",
+            "⚙️ Change shift step...",
             Menu(
-                MenuItem(f"✔️  Текущий шаг: {app_config.STEP}", None, enabled=False),
-                MenuItem("➕ Увеличить шаг (10)", increase_step),
-                MenuItem("➖ Уменьшить шаг (10)", decrease_step),
+                MenuItem(f"✔️  Current step: {app_config.STEP}", None, enabled=False),
+                MenuItem("➕ Increase step (10)", increase_step),
+                MenuItem("➖ Decrease step (10)", decrease_step),
             )
         ),
-        MenuItem('⏩  Смещение вправо (Alt + Right)', None),
-        MenuItem('⏪  Смещение влево (Alt + Left)', None),
-        MenuItem('↩️  Сбросить (Alt + Down)', lambda icon, item: update_padding(reset=True)),
-        MenuItem(f"{'❌  Отключить' if app_config.LINE_WRAP else '✅  Включить'} (Alt + Up)", toggle_line_wrap),
+        MenuItem('⏩  Shift right (Alt + Right)', None),
+        MenuItem('⏪  Shift left (Alt + Left)', None),
+        MenuItem('↩️  Reset (Alt + Down)', lambda icon, item: update_padding(reset=True)),
+        MenuItem(f"{'❌  Disable' if app_config.LINE_WRAP else '✅  Enable'} (Alt + Up)", toggle_line_wrap),
         MenuItem(
-            "ℹ️  Путь до конфига WT",
+            "ℹ️  Path to WT config",
             Menu(
-                MenuItem(f"Конфиг: {basename(settings_file)}", lambda icon, item: os.startfile(settings_file)),
-                MenuItem(f"Папка: {basename(settings_dir)}", lambda icon, item: os.startfile(settings_dir)),
+                MenuItem(f"Config: {basename(settings_file)}", lambda icon, item: os.startfile(settings_file)),
+                MenuItem(f"Directory: {basename(settings_dir)}", lambda icon, item: os.startfile(settings_dir)),
             )
         ),
-        MenuItem('❌  Выход (Alt + Q)', lambda icon, item: icon.stop())
+        MenuItem('❌  Quit (Alt + Q)', lambda icon, item: icon.stop())
     )
 
 
